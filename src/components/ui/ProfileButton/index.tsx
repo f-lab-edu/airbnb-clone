@@ -18,7 +18,7 @@ export const ProfileButton = () => {
                     />
                 </svg>
             </div>
-            <div className="flex items-center justify-center w-8 h-8 ounded-full ml-2">
+            <div className="flex items-center justify-center w-8 h-8 rounded-full ml-2">
                 <svg
                     width="33"
                     height="33"
