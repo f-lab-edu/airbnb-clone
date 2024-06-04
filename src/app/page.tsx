@@ -1,9 +1,11 @@
 import Link from 'next/link'
 
 import { DropDown } from '@/components/ui/DropDown'
-import { ProfileButton } from '@/components/ui/ProfileButton'
-import { Logo } from '@/components/ui/Logo'
+import { ProfileButton } from '../components/ProfileButton'
+import { Logo } from '../components/Logo'
 import { SearchTabs } from '@/components/ui/SearchTabs'
+import { CategoryBar } from '@/components/CategoryBar'
+import Image from 'next/image'
 export default function Home() {
     return (
         <>
@@ -33,7 +35,24 @@ export default function Home() {
                 <SearchTabs />
             </header>
 
-            <main></main>
+            <main className={'px-10'}>
+                <section className={'py-6'}>
+                    <CategoryBar />
+                </section>
+                <article className={'grid grid-cols-6 grid-rows-6 gap-4'}>
+                    {Array.from({ length: 10 }).map((_, idx) => (
+                        <a key={idx} className={'w-full h-full'}>
+                            <Image
+                                width={500}
+                                height={500}
+                                objectFit={'cover'}
+                                src={'/mockHouse.svg'}
+                                alt={'mockHouse'}
+                            />
+                        </a>
+                    ))}
+                </article>
+            </main>
             <footer></footer>
         </>
     )
