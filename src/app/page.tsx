@@ -1,11 +1,13 @@
 import Link from 'next/link'
 
 import { DropDown } from '@/components/ui/DropDown'
-import { ProfileButton } from '../components/ProfileButton'
-import { Logo } from '../components/Logo'
+import { ProfileButton } from '@/components/ProfileButton'
+import { Logo } from '@/components/Logo'
 import { SearchTabs } from '@/components/ui/SearchTabs'
 import { CategoryBar } from '@/components/CategoryBar'
 import Image from 'next/image'
+import { FilterButton } from '@/components/FilterButton'
+
 export default function Home() {
     return (
         <>
@@ -36,11 +38,19 @@ export default function Home() {
             </header>
 
             <main className={'px-10'}>
-                <section className={'py-6'}>
+                <section
+                    id={'main_category'}
+                    className={'flex py-6 h-20 items-center w-full mt-6'}
+                >
                     <CategoryBar />
+                    <FilterButton />
                 </section>
-                <article className={'grid grid-cols-6 grid-rows-6 gap-4'}>
-                    {Array.from({ length: 10 }).map((_, idx) => (
+
+                <section
+                    id={'main_list'}
+                    className={'grid grid-cols-5 grid-rows-5 gap-4 mt-5'}
+                >
+                    {Array.from({ length: 40 }).map((_, idx) => (
                         <a key={idx} className={'w-full h-full'}>
                             <Image
                                 width={500}
@@ -51,7 +61,7 @@ export default function Home() {
                             />
                         </a>
                     ))}
-                </article>
+                </section>
             </main>
             <footer></footer>
         </>
