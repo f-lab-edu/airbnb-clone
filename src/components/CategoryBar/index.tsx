@@ -9,18 +9,16 @@ export const CategoryBar = () => {
     const categoryIcons = fs.readdirSync(categoryIconDir)
 
     return (
-        <div>
-            <Carousel offset={10}>
-                {categoryIcons.map((icon, idx) => (
-                    <Image
-                        key={idx}
-                        src={`/category_icons/${icon}`}
-                        width={48}
-                        height={48}
-                        alt={icon}
-                    />
-                ))}
-            </Carousel>
-        </div>
+        <Carousel>
+            {categoryIcons.map((icon, idx) => (
+                <Image
+                    key={idx}
+                    src={`/category_icons/${icon}`}
+                    width={48}
+                    height={48}
+                    alt={icon}
+                />
+            ))}
+        </Carousel>
     )
 }
