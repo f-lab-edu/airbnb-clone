@@ -50,3 +50,8 @@
         @apply bg-background text-foreground;
     }
 }
+
+.carousel-grid {
+    @apply grid grid-cols-carousel gap-4 items-center;
+    grid-template-areas: "carousel_prev_btn carousel_container carousel_next_btn";
+}
