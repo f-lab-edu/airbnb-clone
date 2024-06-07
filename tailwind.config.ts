@@ -76,9 +76,41 @@ const config = {
             backgroundImage: {
                 'hero-pattern': 'var(--gradient)',
             },
+            gridTemplateColumns: {
+                carousel: 'auto 1fr auto',
+            },
+            gridTemplateAreas: {
+                carousel: [
+                    'carousel_prev_btn carousel_container carousel_next_btn',
+                ],
+            },
         },
     },
-    plugins: [require('tailwindcss-animate')],
+    plugins: [
+        require('tailwindcss-animate'),
+        function ({
+            addUtilities,
+        }: {
+            addUtilities: (utilities: Record<string, any>) => void
+        }) {
+            addUtilities({
+                '.grid-areas-carousel': {
+                    'grid-template-areas': `
+            "carousel_prev_btn carousel_container carousel_next_btn"
+          `,
+                },
+                '.area-carousel_prev_btn': {
+                    'grid-area': 'carousel_prev_btn',
+                },
+                '.area-carousel_container': {
+                    'grid-area': 'carousel_container',
+                },
+                '.area-carousel_next_btn': {
+                    'grid-area': 'carousel_next_btn',
+                },
+            })
+        },
+    ],
 } satisfies Config
 
 export default config
