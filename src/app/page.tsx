@@ -40,7 +40,7 @@ export default function Home() {
             <main className={'px-10'}>
                 <section
                     id={'main_category'}
-                    className={'flex py-6 h-20 items-center w-full mt-6'}
+                    className={'flex gap-6 py-6 h-20 items-center w-full mt-6'}
                 >
                     <CategoryBar />
                     <FilterButton />
