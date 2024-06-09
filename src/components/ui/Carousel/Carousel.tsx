@@ -1,18 +1,9 @@
 'use client'
-import {
-    forwardRef,
-    useCallback,
-    useEffect,
-    useLayoutEffect,
-    useRef,
-    useState,
-} from 'react'
-import {
-    CarouselItemProps,
-    CrouselProps,
-    DEFAULT_OFFSET,
-} from '@/components/ui/Carousel/types'
+import { forwardRef } from 'react'
+import { CarouselItemProps, CrouselProps } from '@/components/ui/Carousel/types'
 import { useCarousel } from '@/components/ui/Carousel/useCarousel'
+import { RightArrow } from '@/components/Icons/RightArrow'
+import { LeftArrow } from '@/components/Icons/LeftArrow'
 
 /**
  *
@@ -43,7 +34,7 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
                 <ul
                     ref={carouselTrackRef}
                     className={
-                        'grid grid-flow-col auto-cols-[minmax(200px,_1fr)] transition-transform duration-200'
+                        'grid grid-flow-col auto-cols-[minmax(68px,_1fr)] transition-transform duration-200 gap-3'
                     }
                     style={{
                         transform: `translateX(-${currentTransitionX}px)`,
@@ -62,22 +53,13 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
                 }
                 onClick={handleOnPrev}
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 32 32"
-                    width="12px"
-                    height="12px"
-                    aria-hidden="true"
-                    role="presentation"
-                    focusable="false"
-                >
-                    <path
-                        fill="none"
-                        d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"
-                        stroke="black"
-                        strokeWidth="5"
-                    ></path>
-                </svg>
+                <LeftArrow
+                    name={'leftArrow'}
+                    strokeWidth={5}
+                    stroke={'black'}
+                    width={12}
+                    height={12}
+                />
             </button>
             <button
                 className={
@@ -85,19 +67,12 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
                 }
                 onClick={handleOnNext}
             >
-                <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M4.5 1.5L8.7375 5.7375C8.80621 5.8076 8.8447 5.90184 8.8447 6C8.8447 6.09816 8.80621 6.1924 8.7375 6.2625L4.5 10.5"
-                        stroke="black"
-                        strokeWidth="2"
-                    />
-                </svg>
+                <RightArrow
+                    name={'rightArrow'}
+                    strokeWidth={1}
+                    width={12}
+                    height={12}
+                />
             </button>
         </div>
     )
