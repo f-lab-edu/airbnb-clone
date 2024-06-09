@@ -12,6 +12,7 @@ import {
     CrouselProps,
     DEFAULT_OFFSET,
 } from '@/components/ui/Carousel/types'
+import { useCarousel } from '@/components/ui/Carousel/useCarousel'
 
 /**
  *
@@ -24,72 +25,17 @@ import {
 
 const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
     const childArray = Array.isArray(children) ? children : [children]
-    const [firstVisibleSlideIndex, setFirstVisibleSlideIndex] =
-        useState<number>(DEFAULT_OFFSET)
-
-    const [currentTransitionX, setCurrentTransitionX] = useState<number>(0)
-
-    const carouselTrackRef = useRef<HTMLUListElement>(null)
-    const slideDisplayInfo = useRef<{
-        slidesToShow: number
-        slidesToScroll: number
-    }>({ slidesToShow: -1, slidesToScroll: -1 })
-
-    const individualSlideWidthRef = useRef<number>(0)
-    const carouselItemRef = useRef<HTMLLIElement>(null)
-
-    useEffect(() => {
-        if (carouselTrackRef.current && carouselItemRef.current) {
-            const carouselTrackWidth = carouselTrackRef.current.clientWidth
-            const computedStyle = getComputedStyle(carouselTrackRef.current)
-            let gapValue = computedStyle.gap || computedStyle.columnGap || '0px'
-
-            if (gapValue === 'normal') gapValue = '0px'
-
-            individualSlideWidthRef.current =
-                carouselItemRef.current.clientWidth + parseInt(gapValue)
-            slideDisplayInfo.current.slidesToShow =
-                slidesToShow ||
-                Math.floor(carouselTrackWidth / individualSlideWidthRef.current)
-
-            slideDisplayInfo.current.slidesToScroll =
-                slideDisplayInfo.current.slidesToShow > 2
-                    ? slideDisplayInfo.current.slidesToShow - 1
-                    : slideDisplayInfo.current.slidesToShow
-        }
-    }, [firstVisibleSlideIndex, slidesToScroll, slidesToShow])
-
-    const handleOnPrev = useCallback(() => {
-        if (carouselTrackRef.current) {
-            const currenX = Math.abs(
-                carouselTrackRef.current.getBoundingClientRect().x
-            )
-            const nextPosition =
-                slideDisplayInfo.current.slidesToScroll *
-                individualSlideWidthRef.current
-
-            // setCurrentTransitionX((prev) => Math.max(0, prev - nextPosition))
-            const translateX = Math.max(0, currenX - nextPosition)
-            carouselTrackRef.current.style.transform = `translateX(-${translateX}px)`
-        }
-    }, [])
-
-    const handleOnNext = useCallback(() => {
-        if (carouselTrackRef.current) {
-            const currentX = Math.abs(
-                carouselTrackRef.current.getBoundingClientRect().x
-            )
-            const maxScrollPosition =
-                childArray.length * individualSlideWidthRef.current -
-                carouselTrackRef.current.clientWidth
-            const nextPosition =
-                currentX +
-                slideDisplayInfo.current.slidesToScroll *
-                    individualSlideWidthRef.current
-            const nextTranslateX = Math.min(nextPosition, maxScrollPosition)
-            carouselTrackRef.current.style.transform = `translateX(-${nextTranslateX}px)`
-        }
-    }, [])
+    const {
+        currentTransitionX,
+        carouselTrackRef,
+        carouselItemRef,
+        handleOnPrev,
+        handleOnNext,
+    } = useCarousel({
+        slidesToShow,
+        slidesToScroll,
+        childArray,
+    })
 
     return (
         <div className={'carousel-grid carousel_container relative flex-1'}>
@@ -99,6 +45,9 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
                     className={
                         'grid grid-flow-col auto-cols-[minmax(200px,_1fr)] transition-transform duration-200'
                     }
+                    style={{
+                        transform: `translateX(-${currentTransitionX}px)`,
+                    }}
                 >
                     {childArray.map((child, idx) => (
                         <Carousel.Item key={idx} ref={carouselItemRef}>
