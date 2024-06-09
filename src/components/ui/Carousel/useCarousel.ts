@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { DEFAULT_OFFSET } from '@/components/ui/Carousel/types'
+import { ZERO } from '@/components/ui/Carousel/types'
+import {
+    getDefaultSlidesToShow,
+    getDefaultSlidesToScroll,
+    getGapStyle,
+} from '@/components/ui/Carousel/carousel.util'
 
 type useCarouselProp = {
     childArray: React.ReactNode[]
@@ -11,40 +16,36 @@ export const useCarousel = ({
     slidesToScroll,
     childArray,
 }: useCarouselProp) => {
-    const [currentTransitionX, setCurrentTransitionX] = useState<number>(0)
-    const [calculatedSlidesToShow, setCalculatedSlidesToShow] =
-        useState<number>(0)
-    const [calculatedSlidesToScroll, setCalculatedSlidesToScroll] =
-        useState<number>(0)
-
     const carouselTrackRef = useRef<HTMLUListElement>(null)
     const carouselItemRef = useRef<HTMLLIElement>(null)
-    const individualSlideWidth = useRef<number>(0)
+    const individualSlideWidth = useRef<number>(ZERO)
+
+    const [currentTransitionX, setCurrentTransitionX] = useState<number>(ZERO)
+    const [calculatedSlidesToShow, setCalculatedSlidesToShow] =
+        useState<number>(ZERO)
+    const [calculatedSlidesToScroll, setCalculatedSlidesToScroll] =
+        useState<number>(ZERO)
 
     useEffect(() => {
-        if (carouselTrackRef.current && carouselItemRef.current) {
-            const carouselTrackWidth = carouselTrackRef.current.clientWidth
-            const computedStyle = getComputedStyle(carouselTrackRef.current)
-            let gapValue = computedStyle.gap || computedStyle.columnGap || '0px'
+        const carouselTrack = carouselTrackRef.current
+        const carouselItem = carouselItemRef.current
 
-            if (gapValue === 'normal') gapValue = '0px'
+        if (carouselTrack && carouselItem) {
             individualSlideWidth.current =
-                carouselItemRef.current.clientWidth + parseInt(gapValue)
+                carouselItemRef.current.clientWidth + getGapStyle(carouselTrack)
 
-            const calculatedSlidesToShow =
-                slidesToShow ||
-                Math.floor(carouselTrackWidth / individualSlideWidth.current)
-
-            const getDefaultSlidesToScroll =
-                calculatedSlidesToShow > 2
-                    ? calculatedSlidesToShow - 1
-                    : calculatedSlidesToShow
-
-            const calculatedSlidesToScroll =
-                slidesToScroll || getDefaultSlidesToScroll
-
-            setCalculatedSlidesToShow(calculatedSlidesToShow)
-            setCalculatedSlidesToScroll(calculatedSlidesToScroll)
+            const defaultSlidesToShow = getDefaultSlidesToShow(
+                carouselTrack.clientWidth,
+                individualSlideWidth.current
+            )
+            const defaultSlidesToScroll = getDefaultSlidesToScroll(() =>
+                getDefaultSlidesToShow(
+                    carouselTrack.clientWidth,
+                    individualSlideWidth.current
+                )
+            )
+            setCalculatedSlidesToShow(slidesToShow || defaultSlidesToShow)
+            setCalculatedSlidesToScroll(slidesToScroll || defaultSlidesToScroll)
         }
     }, [slidesToScroll, slidesToShow, currentTransitionX])
 
@@ -57,9 +58,9 @@ export const useCarousel = ({
         setCurrentTransitionX((prev) => {
             const nextPosition =
                 prev - calculatedSlidesToScroll * individualSlideWidth.current
-            return Math.max(0, nextPosition)
+            return Math.max(ZERO, nextPosition)
         })
-    }, [calculatedSlidesToShow])
+    }, [calculatedSlidesToScroll])
 
     const handleOnNext = useCallback(() => {
         if (!carouselTrackRef.current) {
