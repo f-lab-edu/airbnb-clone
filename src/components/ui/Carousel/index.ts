@@ -1,2 +1,3 @@
-export { Carousel } from './Carousel'
+import { Carousel } from './Carousel'
 export * from './types'
+export default Carousel
