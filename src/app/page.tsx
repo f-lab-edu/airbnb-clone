@@ -33,7 +33,32 @@ export default function Home() {
                 <SearchTabs />
             </header>
 
-            <main></main>
+            <main className={'px-10'}>
+                <section
+                    id={'main_category'}
+                    className={'flex gap-6 py-6 h-20 items-center w-full mt-6'}
+                >
+                    <CategoryBar />
+                    <FilterButton />
+                </section>
+
+                <section
+                    id={'main_list'}
+                    className={'grid grid-cols-5 grid-rows-5 gap-4 mt-5'}
+                >
+                    {Array.from({ length: 40 }).map((_, idx) => (
+                        <a key={idx} className={'w-full h-full'}>
+                            <Image
+                                width={500}
+                                height={500}
+                                objectFit={'cover'}
+                                src={'/mockHouse.svg'}
+                                alt={'mockHouse'}
+                            />
+                        </a>
+                    ))}
+                </section>
+            </main>
             <footer></footer>
         </>
     )
