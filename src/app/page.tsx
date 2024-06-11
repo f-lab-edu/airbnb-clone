@@ -43,7 +43,7 @@ export default function Home() {
                     className={'flex gap-6 py-6 h-20 items-center w-full mt-6'}
                 >
                     <CategoryBar />
-                    <FilterButton />
+                    {/*<FilterButton />*/}
                 </section>
 
                 <section
@@ -52,13 +52,13 @@ export default function Home() {
                 >
                     {Array.from({ length: 40 }).map((_, idx) => (
                         <a key={idx} className={'w-full h-full'}>
-                            <Image
-                                width={500}
-                                height={500}
-                                objectFit={'cover'}
-                                src={'/mockHouse.svg'}
-                                alt={'mockHouse'}
-                            />
+                            {/*<Image*/}
+                            {/*    width={500}*/}
+                            {/*    height={500}*/}
+                            {/*    objectFit={'cover'}*/}
+                            {/*    src={'/mockHouse.svg'}*/}
+                            {/*    alt={'mockHouse'}*/}
+                            {/*/>*/}
                         </a>
                     ))}
                 </section>
