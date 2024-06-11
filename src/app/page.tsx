@@ -1,9 +1,13 @@
 import Link from 'next/link'
 
 import { DropDown } from '@/components/ui/DropDown'
-import { ProfileButton } from '@/components/ui/ProfileButton'
-import { Logo } from '@/components/ui/Logo'
+import { ProfileButton } from '@/components/ProfileButton'
+import { Logo } from '@/components/Logo'
 import { SearchTabs } from '@/components/ui/SearchTabs'
+import { CategoryBar } from '@/components/CategoryBar'
+import Image from 'next/image'
+import { FilterButton } from '@/components/FilterButton'
+
 export default function Home() {
     return (
         <>
