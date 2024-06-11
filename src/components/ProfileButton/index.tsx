@@ -1,7 +1,7 @@
 'use client'
 
 import { UserIcon } from '@/components/Icons/UserIcon'
-import { HamburgerIcon } from '../Icons/HamburgerIcon'
+import { HamburgerIcon } from '@/components/Icons/HamburgerIcon'
 
 export const ProfileButton = () => {
     return (
