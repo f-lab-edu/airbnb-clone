@@ -7,6 +7,7 @@ import { SearchTabs } from '@/components/ui/SearchTabs'
 import { CategoryBar } from '@/components/CategoryBar'
 import Image from 'next/image'
 import { FilterButton } from '@/components/FilterButton'
+import Carousel from '@/components/ui/Carousel'
 
 export default function Home() {
     return (
@@ -43,24 +44,31 @@ export default function Home() {
                     className={'flex gap-6 py-6 h-20 items-center w-full mt-6'}
                 >
                     <CategoryBar />
-                    {/*<FilterButton />*/}
+                    <FilterButton />
                 </section>
 
                 <section
                     id={'main_list'}
                     className={'grid grid-cols-5 grid-rows-5 gap-4 mt-5'}
                 >
-                    {Array.from({ length: 40 }).map((_, idx) => (
-                        <a key={idx} className={'w-full h-full'}>
-                            {/*<Image*/}
-                            {/*    width={500}*/}
-                            {/*    height={500}*/}
-                            {/*    objectFit={'cover'}*/}
-                            {/*    src={'/mockHouse.svg'}*/}
-                            {/*    alt={'mockHouse'}*/}
-                            {/*/>*/}
-                        </a>
-                    ))}
+                    <div className={'w-96'}>
+                        <Carousel>
+                            {Array.from({ length: 2 }).map((_, idx) => (
+                                <a
+                                    key={idx.toString()}
+                                    className={'w-200 h-200'}
+                                >
+                                    <Image
+                                        width={100}
+                                        height={100}
+                                        objectFit={'cover'}
+                                        src={'/mockHouse.svg'}
+                                        alt={'mockHouse'}
+                                    />
+                                </a>
+                            ))}
+                        </Carousel>
+                    </div>
                 </section>
             </main>
             <footer></footer>
