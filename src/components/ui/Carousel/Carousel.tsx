@@ -4,7 +4,6 @@ import { CarouselItemProps, CrouselProps } from '@/components/ui/Carousel/types'
 import { useCarousel } from '@/components/ui/Carousel/useCarousel'
 import { RightArrow } from '@/components/Icons/RightArrow'
 import { LeftArrow } from '@/components/Icons/LeftArrow'
-
 /**
  *
  * Carousel Component
@@ -14,7 +13,7 @@ import { LeftArrow } from '@/components/Icons/LeftArrow'
  *
  */
 
-const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
+function Carousel({ slidesToShow, slidesToScroll, children }: CrouselProps) {
     const childArray = Array.isArray(children) ? children : [children]
     const {
         currentTransitionX,
@@ -32,9 +31,10 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
         <div className={'carousel-grid carousel_container relative flex-1'}>
             <div className={'area-carousel_container overflow-hidden'}>
                 <ul
+                    data-testid={'carousel_track'}
                     ref={carouselTrackRef}
                     className={
-                        'grid grid-flow-col auto-cols-[minmax(68px,_1fr)] transition-transform duration-200 gap-3'
+                        'grid grid-flow-col auto-cols-[minmax(68px,_1fr)] transition-transform duration-200'
                     }
                     style={{
                         transform: `translateX(-${currentTransitionX}px)`,
@@ -52,6 +52,7 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
                     'area-carousel_prev_btn flex justify-center items-center w-7 h-7 rounded-full border border-1 border-gray-20'
                 }
                 onClick={handleOnPrev}
+                data-testid={'carousel_prev_button'}
             >
                 <LeftArrow
                     name={'leftArrow'}
@@ -66,6 +67,7 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
                     'area-carousel_next_btn flex justify-center items-center w-7 h-7 rounded-full border border-1 border-gray-200'
                 }
                 onClick={handleOnNext}
+                data-testid={'carousel_next_button'}
             >
                 <RightArrow
                     name={'rightArrow'}
@@ -80,12 +82,15 @@ const Carousel = ({ slidesToShow, slidesToScroll, children }: CrouselProps) => {
 
 const CarouselItem = forwardRef<HTMLLIElement, CarouselItemProps>(
     ({ children }, ref) => {
-        return <li ref={ref}>{children}</li>
+        return (
+            <li ref={ref} data-testid={'carousel_item'}>
+                {children}
+            </li>
+        )
     }
 )
 
 CarouselItem.displayName = 'CarouselItem'
-
 Carousel.Item = CarouselItem
 
 export { Carousel }
