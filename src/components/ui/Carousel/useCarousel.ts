@@ -3,7 +3,6 @@ import { ZERO } from '@/components/ui/Carousel/types'
 import {
     getDefaultSlidesToShow,
     getDefaultSlidesToScroll,
-    getGapStyle,
 } from '@/components/ui/Carousel/carousel.util'
 
 type useCarouselProp = {
@@ -29,10 +28,8 @@ export const useCarousel = ({
     useEffect(() => {
         const carouselTrack = carouselTrackRef.current
         const carouselItem = carouselItemRef.current
-
         if (carouselTrack && carouselItem) {
-            individualSlideWidth.current =
-                carouselItemRef.current.clientWidth + getGapStyle(carouselTrack)
+            individualSlideWidth.current = carouselItemRef.current.clientWidth
 
             const defaultSlidesToShow = getDefaultSlidesToShow(
                 carouselTrack.clientWidth,
@@ -67,7 +64,6 @@ export const useCarousel = ({
             console.warn('carouselTrackRef is not defined')
             return
         }
-
         const maxScrollPosition =
             childArray.length * individualSlideWidth.current -
             carouselTrackRef.current.clientWidth
@@ -77,7 +73,7 @@ export const useCarousel = ({
                 prev + calculatedSlidesToScroll * individualSlideWidth.current
             return Math.min(nextPosition, maxScrollPosition)
         })
-    }, [calculatedSlidesToScroll, childArray.length])
+    }, [calculatedSlidesToScroll, childArray.length, carouselTrackRef])
 
     return {
         handleOnPrev,

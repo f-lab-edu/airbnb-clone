@@ -1,3 +1,7 @@
+export const SLIDE_CONFIG = {
+    defaultSlideDeduction: 1,
+}
+
 export type CarouselItemProps = {
     children: React.ReactNode
 }
