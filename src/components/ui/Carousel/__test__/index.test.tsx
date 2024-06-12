@@ -1,10 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react'
 import Carousel from '@/components/ui/Carousel'
 import {
     getDefaultSlidesToScroll,
     getDefaultSlidesToShow,
 } from '@/components/ui/Carousel/carousel.util'
-import { useCarousel } from '../useCarousel'
 
 const extractNumber = (ele: HTMLElement) =>
     parseInt((ele.style.transform.match(/-?\d+/) || ['0'])[0])
@@ -52,12 +50,12 @@ describe('Carousel', () => {
 
         const maxTranslateX = Math.abs(-1400)
         while (Math.abs(extractNumber(track)) < maxTranslateX) {
-            _t.act(() => fireEvent.click(nextButton))
+            _t.act(() => _t.fireEvent.click(nextButton))
         }
 
         expect(Math.abs(extractNumber(track))).toBe(maxTranslateX)
 
-        _t.act(() => fireEvent.click(nextButton))
+        _t.act(() => _t.fireEvent.click(nextButton))
         expect(Math.abs(extractNumber(track))).toBe(maxTranslateX)
     })
 })
