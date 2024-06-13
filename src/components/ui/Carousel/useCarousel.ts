@@ -73,7 +73,7 @@ export const useCarousel = ({
                 prev + calculatedSlidesToScroll * individualSlideWidth.current
             return Math.min(nextPosition, maxScrollPosition)
         })
-    }, [calculatedSlidesToScroll, childArray.length, carouselTrackRef])
+    }, [calculatedSlidesToScroll, childArray.length])
 
     return {
         handleOnPrev,
