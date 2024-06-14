@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "next lint",
         "test": "jest",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --watch",
+        "svgr:generate": "npx @svgr/cli --out-dir src/components/icons --ignore-existing -- public/icons"
     },
     "dependencies": {
         "@radix-ui/react-slot": "^1.0.2",
@@ -22,6 +23,7 @@
         "tailwindcss-animate": "^1.0.7"
     },
     "devDependencies": {
+        "@svgr/webpack": "^8.1.0",
         "@testing-library/jest-dom": "^6.4.5",
         "@testing-library/react": "^15.0.7",
         "@types/jest": "^29.5.12",
