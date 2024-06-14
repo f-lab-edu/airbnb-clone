@@ -4,5 +4,3 @@ import { testUtils } from '@/types/test-utils'
 configure({
     testIdAttribute: 'data-testid',
 })
-
-global._t = testUtils
