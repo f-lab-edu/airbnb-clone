@@ -3,6 +3,7 @@ import {
     getDefaultSlidesToScroll,
     getDefaultSlidesToShow,
 } from '@/components/ui/Carousel/carousel.util'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 
 const extractNumber = (ele: HTMLElement) =>
     parseInt((ele.style.transform.match(/-?\d+/) || ['0'])[0])
@@ -31,31 +32,31 @@ describe('Carousel', () => {
         </div>
     ))
     it('아이템이 제일 왼쪽에 위치 하고 있을 때, 왼쪽 버튼을 누르면 더 이상 이동 하지 않는다.', () => {
-        _t.render(<Carousel>{childArray}</Carousel>)
+        render(<Carousel>{childArray}</Carousel>)
 
-        const track = _t.screen.getByTestId('carousel_track')
-        const prevButton = _t.screen.getByTestId('carousel_prev_button')
+        const track = screen.getByTestId('carousel_track')
+        const prevButton = screen.getByTestId('carousel_prev_button')
 
         expect(track).toHaveStyle('transform: translateX(-0px)')
-        _t.fireEvent.click(prevButton)
+        fireEvent.click(prevButton)
         expect(track).toHaveStyle('transform: translateX(-0px)')
     })
 
     it('아이템이 제일 오른쪽에 위치 하고 있을 때, 오른쪽 버튼을 누르면 더 이상 이동하지 않는다.', () => {
-        _t.render(<Carousel>{childArray}</Carousel>)
-        const track = _t.screen.getByTestId('carousel_track')
+        render(<Carousel>{childArray}</Carousel>)
+        const track = screen.getByTestId('carousel_track')
 
         expect(track).toHaveStyle('transform: translateX(-0px)')
-        const nextButton = _t.screen.getByTestId('carousel_next_button')
+        const nextButton = screen.getByTestId('carousel_next_button')
 
         const maxTranslateX = Math.abs(-1400)
         while (Math.abs(extractNumber(track)) < maxTranslateX) {
-            _t.act(() => _t.fireEvent.click(nextButton))
+            act(() => fireEvent.click(nextButton))
         }
 
         expect(Math.abs(extractNumber(track))).toBe(maxTranslateX)
 
-        _t.act(() => _t.fireEvent.click(nextButton))
+        act(() => fireEvent.click(nextButton))
         expect(Math.abs(extractNumber(track))).toBe(maxTranslateX)
     })
 })
