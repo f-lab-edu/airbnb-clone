@@ -2,8 +2,9 @@
 import { forwardRef } from 'react'
 import { CarouselItemProps, CrouselProps } from '@/components/ui/Carousel/types'
 import { useCarousel } from '@/components/ui/Carousel/useCarousel'
-import { RightArrow } from '@/components/Icons/RightArrow'
-import { LeftArrow } from '@/components/Icons/LeftArrow'
+import RightArrow from '@/components/Icons/RightArrow'
+import LeftArrow from '@/components/Icons/LeftArrow'
+
 /**
  *
  * Carousel Component
@@ -54,13 +55,7 @@ function Carousel({ slidesToShow, slidesToScroll, children }: CrouselProps) {
                 onClick={handleOnPrev}
                 data-testid={'carousel_prev_button'}
             >
-                <LeftArrow
-                    name={'leftArrow'}
-                    strokeWidth={5}
-                    stroke={'black'}
-                    width={12}
-                    height={12}
-                />
+                <LeftArrow />
             </button>
             <button
                 className={
