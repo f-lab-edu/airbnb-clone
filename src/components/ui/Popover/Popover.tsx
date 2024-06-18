@@ -17,13 +17,11 @@ export default function Popover({ children }: Readonly<PopoverProps>) {
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
-            console.log('target', e.currentTarget)
             if (
                 isOpen &&
                 popoverContentRef.current &&
                 !popoverContentRef.current.contains(e.target as Node)
             ) {
-                console.log('clickoutside')
                 setIsOpen(false)
             }
         }
@@ -31,9 +29,7 @@ export default function Popover({ children }: Readonly<PopoverProps>) {
         document.addEventListener('click', handleClickOutside)
 
         return () => {
-            document.removeEventListener('click', () => {
-                console.log('remove')
-            })
+            document.removeEventListener('click', handleClickOutside)
         }
     }, [isOpen])
     return (
@@ -70,22 +66,17 @@ export function PopoverContent({
     }
     const { isOpen } = value
 
-    return (
-        isOpen && (
-            <Overlay>
-                <div className="popover-content_wrapper">{children}</div>
-            </Overlay>
-        )
-    )
+    return isOpen ? (
+        <Overlay>
+            <div className="popover-content_wrapper">{children}</div>
+        </Overlay>
+    ) : null
 }
 
 function Overlay({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <div className="fixed inset-0 z-10">
-            <div className="absolute inset-0 bg-black opacity-50"></div>
-            <div className="relative bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
-                {children}
-            </div>
+        <div className="absolute bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto z-10">
+            {children}
         </div>
     )
 }

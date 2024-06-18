@@ -8,6 +8,7 @@ import { CategoryBar } from '@/components/CategoryBar'
 import Image from 'next/image'
 import { FilterButton } from '@/components/FilterButton'
 import Carousel from '@/components/ui/Carousel'
+import { DropDownItem } from '@/components/ui/DropDown/DropDown'
 
 export default function Home() {
     return (
@@ -29,10 +30,9 @@ export default function Home() {
                         </Link>
                     </div>
                     <div className={'flex w-1/3 items-center justify-end'}>
-                        <DropDown
-                            options={['로그인', '회원가입']}
-                            triggerElement={<ProfileButton />}
-                        />
+                        <DropDown triggerElement={<ProfileButton />}>
+                            <DropDownItem>프로필 </DropDownItem>
+                        </DropDown>
                     </div>
                 </nav>
                 <SearchTabs />

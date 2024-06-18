@@ -1,6 +1,6 @@
 export type DropDownProps = {
     triggerElement?: React.ReactNode
-    options: string[]
+    children: React.ReactNode
 }
 
 export type DropDownMenuProps = {
