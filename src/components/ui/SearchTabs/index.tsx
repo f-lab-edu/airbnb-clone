@@ -1,4 +1,6 @@
+'use client'
 import { DropDown } from '@/components/ui/DropDown'
+import Popover from '../Popover/Popover'
 
 /**
  * TODO :
@@ -17,48 +19,68 @@ export const SearchTabs = () => {
             }
         >
             <div className={'flex items-center pl-4 w-2/6'}>
-                <DropDown
-                    options={['숙소', '체험', '온라인 체험']}
-                    triggerElement={
+                <Popover>
+                    <Popover.Trigger>
                         <div className={'border-r border-r-gray-200'}>
                             <p>여행지</p>
                             <input placeholder={'여행지 검색'} />
                         </div>
-                    }
-                />
+                    </Popover.Trigger>
+                    <Popover.Content>
+                        <div className="popover">
+                            <h3>Popover</h3>
+                            <p>Popover content</p>
+                        </div>
+                    </Popover.Content>
+                </Popover>
             </div>
             <div className={'flex items-center pl-4 w-1/6'}>
-                <DropDown
-                    options={['숙소', '체험', '온라인 체험']}
-                    triggerElement={
+                <Popover>
+                    <Popover.Trigger>
                         <div className={'border-r border-r-gray-200'}>
                             <p>체크인</p>
                             <input placeholder={'날짜 추가'} />
                         </div>
-                    }
-                />
+                    </Popover.Trigger>
+                    <Popover.Content>
+                        <div className="popover">
+                            <h3>Popover</h3>
+                            <p>Popover content</p>
+                        </div>
+                    </Popover.Content>
+                </Popover>
             </div>
             <div className={'flex items-center pl-4 w-1/6'}>
-                <DropDown
-                    options={['숙소', '체험', '온라인 체험']}
-                    triggerElement={
+                <Popover>
+                    <Popover.Trigger>
                         <div className={'border-r border-r-gray-200'}>
-                            <p>체크아웃</p>
+                            <p>체크인</p>
                             <input placeholder={'날짜 추가'} />
                         </div>
-                    }
-                />
+                    </Popover.Trigger>
+                    <Popover.Content>
+                        <div className="popover">
+                            <h3>Popover</h3>
+                            <p>Popover content</p>
+                        </div>
+                    </Popover.Content>
+                </Popover>
             </div>
             <div className={'flex items-center pl-4 w-2/6'}>
-                <DropDown
-                    options={['숙소', '체험', '온라인 체험']}
-                    triggerElement={
+                <Popover>
+                    <Popover.Trigger>
                         <div>
                             <p>여행자</p>
                             <input placeholder={'게스트 추가'} />
                         </div>
-                    }
-                />
+                    </Popover.Trigger>
+                    <Popover.Content>
+                        <div className="popover">
+                            <h3>Popover</h3>
+                            <p>Popover content</p>
+                        </div>
+                    </Popover.Content>
+                </Popover>
             </div>
             <div>
                 <button
