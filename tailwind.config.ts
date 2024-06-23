@@ -78,6 +78,8 @@ const config = {
             },
             gridTemplateColumns: {
                 carousel: 'auto 1fr auto',
+                'card-grid':
+                    'repeat(var(--destination-card-columns), minmax(0, 1fr))',
             },
             gridTemplateAreas: {
                 carousel: [
