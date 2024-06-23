@@ -1,6 +1,7 @@
 'use client'
 import { DropDown } from '@/components/ui/DropDown'
 import Popover from '../Popover/Popover'
+import PlaceInputComponent from '@/components/PlaceInputComponent'
 
 /**
  * TODO :
@@ -27,10 +28,7 @@ export const SearchTabs = () => {
                         </div>
                     </Popover.Trigger>
                     <Popover.Content>
-                        <div className="popover">
-                            <h3>Popover</h3>
-                            <p>Popover content</p>
-                        </div>
+                        <PlaceInputComponent />
                     </Popover.Content>
                 </Popover>
             </div>

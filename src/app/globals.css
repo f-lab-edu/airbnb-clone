@@ -19,6 +19,7 @@
         --secondary: 210 40% 96.1%;
         --secondary-foreground: 222.2 47.4% 11.2%;
 
+        --text-secondary: #dddddd;
         --muted: 210 40% 96.1%;
         --muted-foreground: 215.4 16.3% 46.9%;
 
@@ -39,6 +40,8 @@
             #e31c5f 50%,
             #d70466 100%
         );
+
+        --destination-card-columns: 4;
     }
 }
 
@@ -53,5 +56,5 @@
 
 .carousel-grid {
     @apply grid grid-cols-carousel gap-4 items-center;
-    grid-template-areas: "carousel_prev_btn carousel_container carousel_next_btn";
+    grid-template-areas: 'carousel_prev_btn carousel_container carousel_next_btn';
 }
