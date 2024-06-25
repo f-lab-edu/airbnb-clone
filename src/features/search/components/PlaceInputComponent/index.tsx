@@ -39,7 +39,7 @@ export default function PlaceInputComponent() {
             <h4>지역으로 검색하기</h4>
             <div className="grid grid-cols-card-grid gap-2">
                 {searchWithLocation.map((item, index) => (
-                    <button key={index} className="card">
+                    <button key={item.text} className="card">
                         <div className="card-icon s">
                             <Image
                                 src={`/images/${item.icon}.png`}

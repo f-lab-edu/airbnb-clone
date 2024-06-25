@@ -48,7 +48,7 @@ export function PopoverTrigger({ children }: Readonly<PopoverTriggerProps>) {
     const triggerToggle = () => value?.setIsOpen((prev) => !prev)
 
     return (
-        <div onClick={triggerToggle} tabIndex={0} className="popover-trigger">
+        <div onClick={triggerToggle} className="popover-trigger" role="button">
             {children}
         </div>
     )
