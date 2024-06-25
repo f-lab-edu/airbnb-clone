@@ -1,5 +1,4 @@
 'use client'
-import { DropDown } from '@/components/ui/DropDown'
 import Popover from '../../../../components/ui/Popover/Popover'
 import PlaceInputComponent from '@/features/search/components/PlaceInputComponent'
 import { BaseTabs } from '@/components/ui/BaseTabs'
@@ -27,8 +26,14 @@ export const SearchTabs = () => {
                 <Popover>
                     <Popover.Trigger>
                         <div className={'border-r border-r-gray-200'}>
-                            <label>여행지</label>
-                            <input placeholder={'여행지 검색'} />
+                            <label>
+                                여행지
+                                <input
+                                    type="text"
+                                    placeholder={'여행지 검색'}
+                                    value={destination}
+                                />
+                            </label>
                         </div>
                     </Popover.Trigger>
                     <Popover.Content>
@@ -41,11 +46,14 @@ export const SearchTabs = () => {
                 <Popover>
                     <Popover.Trigger>
                         <div className={'border-r border-r-gray-200'}>
-                            <label>체크인</label>
-                            <input
-                                placeholder={'날짜 추가'}
-                                value={from ? format(from, 'M월dd일') : ''}
-                            />
+                            <label>
+                                체크인
+                                <input
+                                    type="text"
+                                    placeholder={'날짜 추가'}
+                                    value={from ? format(from, 'M월dd일') : ''}
+                                />
+                            </label>
                         </div>
                     </Popover.Trigger>
                     <Popover.Content>
@@ -106,11 +114,14 @@ export const SearchTabs = () => {
                 <Popover>
                     <Popover.Trigger>
                         <div className={'border-r border-r-gray-200'}>
-                            <p>체크아웃</p>
-                            <input
-                                placeholder={'날짜 추가'}
-                                value={to ? format(to, 'M월dd일') : ''}
-                            />
+                            <label>
+                                체크아웃
+                                <input
+                                    type="text"
+                                    placeholder={'날짜 추가'}
+                                    value={to ? format(to, 'M월dd일') : ''}
+                                />
+                            </label>
                         </div>
                     </Popover.Trigger>
                 </Popover>

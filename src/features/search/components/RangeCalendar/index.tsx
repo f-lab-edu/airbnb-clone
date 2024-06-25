@@ -1,9 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { DateRange, DayPicker, useNavigation } from 'react-day-picker'
-import { addDays, format } from 'date-fns'
-import { ChevronLeft } from 'lucide-react'
+import React from 'react'
+import { DayPicker } from 'react-day-picker'
 import { useSearchStore } from '../../store/searchStore'
 
 type Props = {}
