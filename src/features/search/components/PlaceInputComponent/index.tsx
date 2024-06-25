@@ -32,6 +32,7 @@ const DOMESTIC_CITIES = {
 } as const
 
 type CITY_KEY = keyof typeof DOMESTIC_CITIES
+
 export default function PlaceInputComponent() {
     return (
         <div className="popover overflow-hidden rounded-xl px-3">
