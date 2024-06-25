@@ -42,7 +42,7 @@ export default function PlaceInputComponent() {
                     <button key={index} className="card">
                         <div className="card-icon s">
                             <Image
-                                src={`/icons/${item.icon}.png`}
+                                src={`/images/${item.icon}.png`}
                                 alt={item.text}
                                 width={81}
                                 height={81}
