@@ -19,6 +19,24 @@ const config = {
         },
         extend: {
             colors: {
+                airbnb: {
+                    Shades: {
+                        white: `var(--white)`,
+                        black: `var(--black)`,
+                        'white-05': `var(--white-05)`,
+                        'black-30': `var(--black-30)`,
+                    },
+                    neutral: {
+                        100: `var(--neutral-01)`,
+                        200: `var(--neutral-02)`,
+                        300: `var(--neutral-03)`,
+                        400: `var(--neutral-04)`,
+                        500: `var(--neutral-05)`,
+                        600: `var(--neutral-06)`,
+                        700: `var(--neutral-07)`,
+                        800: `var(--neutral-08)`,
+                    },
+                },
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',
                 ring: 'hsl(var(--ring))',
@@ -52,6 +70,7 @@ const config = {
                     DEFAULT: 'hsl(var(--card))',
                     foreground: 'hsl(var(--card-foreground))',
                 },
+                gray: {},
             },
             borderRadius: {
                 xl: 'calc(var(--radius) * 4)',
@@ -78,6 +97,8 @@ const config = {
             },
             gridTemplateColumns: {
                 carousel: 'auto 1fr auto',
+                'auto-fit':
+                    'repeat(var(--destination-card-columns, 3), minmax(0, 1fr))',
                 'card-grid':
                     'repeat(var(--destination-card-columns), minmax(0, 1fr))',
             },
