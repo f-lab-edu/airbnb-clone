@@ -75,7 +75,7 @@ export function PopoverContent({
 
 function Overlay({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <div className="absolute bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto z-10">
+        <div className="absolute bg-white rounded-lg shadow-lg p-6 max-w-screen-md mx-auto z-10">
             {children}
         </div>
     )

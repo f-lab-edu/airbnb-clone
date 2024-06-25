@@ -4,6 +4,21 @@
 
 @layer base {
     :root {
+        --white: #ffffff;
+        --black: #222222;
+
+        --white-05: rgba(34, 34, 34, 0.05);
+        --black-30: rgba(34, 34, 34, 0.3);
+
+        --neutral-01: #f7f7f7;
+        --neutral-02: #ebebeb;
+        --neutral-03: #dddddd;
+        --neutral-04: #d3d3d3;
+        --neutral-05: #c2c2c2;
+        --neutral-06: #b0b0b0;
+        --neutral-07: #717171;
+        --neutral-08: #5e5e5e;
+
         --background: 0 0% 100%;
         --foreground: 222.2 84% 4.9%;
 
@@ -57,4 +72,20 @@
 .carousel-grid {
     @apply grid grid-cols-carousel gap-4 items-center;
     grid-template-areas: 'carousel_prev_btn carousel_container carousel_next_btn';
+}
+
+/* ----------------------------------------------------*/
+/* DATE PICKER STYLES */
+/*-----------------------------------------------------*/
+
+.rdp-months {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    gap: 2rem;
+}
+
+.rdp-cell {
+    padding: 1rem;
+    border-radius: 0.5rem;
 }
