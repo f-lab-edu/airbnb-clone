@@ -1,5 +1,11 @@
 'use client'
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react'
 
 type PopoverProps = {
     children?: React.ReactNode
@@ -11,7 +17,7 @@ type PopoverContextType = {
 //create context
 const PopoverContext = createContext<PopoverContextType | null>(null)
 
-export default function Popover({ children }: Readonly<PopoverProps>) {
+const Popover = ({ children }: Readonly<PopoverProps>) => {
     const [isOpen, setIsOpen] = useState(false)
     const popoverContentRef = React.createRef<HTMLDivElement>()
 
@@ -31,32 +37,32 @@ export default function Popover({ children }: Readonly<PopoverProps>) {
         return () => {
             document.removeEventListener('click', handleClickOutside)
         }
-    }, [isOpen])
+    }, [isOpen, popoverContentRef])
     return (
-        <PopoverContext.Provider value={{ isOpen, setIsOpen }}>
+        <PopoverContext.Provider
+            value={useMemo(() => ({ isOpen, setIsOpen }), [isOpen])}
+        >
             <div ref={popoverContentRef}>{children}</div>
         </PopoverContext.Provider>
     )
 }
 
 type PopoverTriggerProps = {
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
-export function PopoverTrigger({ children }: Readonly<PopoverTriggerProps>) {
+function PopoverTrigger({ children }: Readonly<PopoverTriggerProps>) {
     const value = useContext(PopoverContext)
     const triggerToggle = () => value?.setIsOpen((prev) => !prev)
 
     return (
-        <div onClick={triggerToggle} className="popover-trigger" role="button">
-            {children}
-        </div>
+        <button onClick={triggerToggle} className="popover-trigger">
+            {children || 'click me'}
+        </button>
     )
 }
 
-export function PopoverContent({
-    children,
-}: Readonly<{ children: React.ReactNode }>) {
+function PopoverContent({ children }: Readonly<{ children: React.ReactNode }>) {
     const value = useContext(PopoverContext)
 
     if (!value) {
@@ -83,3 +89,5 @@ function Overlay({ children }: Readonly<{ children: React.ReactNode }>) {
 
 Popover.Trigger = PopoverTrigger
 Popover.Content = PopoverContent
+
+export { Popover, PopoverTrigger, PopoverContent }
