@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import BaseTabsContext from './BaseTabsContext'
 import {
     BaseTabsContentProps,
@@ -18,10 +18,7 @@ const BaseTabs = <T extends string>(
     const [activeItem, setActiveItem] = React.useState('')
     return (
         <BaseTabsContext.Provider
-            value={{
-                activeItem,
-                setActiveItem,
-            }}
+            value={useMemo(() => ({ activeItem, setActiveItem }), [activeItem])}
         >
             {children}
         </BaseTabsContext.Provider>
