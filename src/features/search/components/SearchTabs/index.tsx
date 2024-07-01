@@ -1,20 +1,18 @@
 'use client'
-import Popover from '../../../../components/ui/Popover/Popover'
 import PlaceInputComponent from '@/features/search/components/PlaceInputComponent'
 import { BaseTabs } from '@/components/ui/BaseTabs'
 import { RangeCalendar } from '@/features/search/components/RangeCalendar'
 import SearchTabsWrapperLayout from '../../layouts/SearchTabsWrapperLayout'
 import SearchInputLayout from '../../layouts/SearchInputLayout'
-import { useSearchStore } from '../../store/searchStore'
 import { format } from 'date-fns'
 import { Search } from '@/components/Icons'
+import { useSearchStore } from '@/store/useSearchStore'
+import { Popover } from '@/components/ui/Popover/Popover'
 
 /**
  * SearchTabs
  * @constructor
  */
-
-type TabValue = 'dates' | 'months' | 'flexible'
 
 export const SearchTabs = () => {
     const { destination, from, to } = useSearchStore()
@@ -57,7 +55,7 @@ export const SearchTabs = () => {
                         </div>
                     </Popover.Trigger>
                     <Popover.Content>
-                        <BaseTabs<TabValue>>
+                        <BaseTabs>
                             <BaseTabs.List
                                 className={
                                     'grid grid-cols-auto-fit mx-auto bg-airbnb-neutral-300 px-4 py-2 rounded-3xl gap-x-8'
