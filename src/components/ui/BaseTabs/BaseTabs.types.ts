@@ -2,7 +2,6 @@
 
 export type BaseTabsProps = {
     defaultActiveItem?: string //TODO : T에서 중 한가지여야 함
-    tabValues: string[]
     children: React.ReactNode
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>
 

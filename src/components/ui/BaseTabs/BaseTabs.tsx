@@ -12,7 +12,7 @@ import { useTabStore } from '@/store/ui/useTabStore'
 //개선하고 싶은 부분 : BaseTabs에 제네릭으로 받은 T - value를 하위 컴포넌트에서 제한된 T 로 좁혀지게 사용하도록?;
 
 const BaseTabs = (
-    { tabValues, children }: BaseTabsProps,
+    { children }: BaseTabsProps,
     ref: React.Ref<HTMLDivElement>
 ) => {
     return <>{children}</>
