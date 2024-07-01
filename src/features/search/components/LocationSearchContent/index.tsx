@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 const searchWithLocation = [
@@ -33,36 +35,40 @@ const DOMESTIC_CITIES = {
 
 type CITY_KEY = keyof typeof DOMESTIC_CITIES
 
-export default function PlaceInputComponent() {
+export const LocationSearchContent = () => {
     return (
-        <div className="popover overflow-hidden rounded-xl px-3">
+        <div className={'popover overflow-hidden rounded-xl px-3'}>
             <h4>지역으로 검색하기</h4>
-            <div className="grid grid-cols-card-grid gap-2">
+            <div className={'grid grid-cols-card-grid gap-2'}>
                 {searchWithLocation.map((item, index) => (
-                    <button key={item.text} className="card">
-                        <div className="card-icon s">
+                    <button key={item.text} className={'card'}>
+                        <div className={'card-icons'}>
                             <Image
                                 src={`/images/${item.icon}.png`}
                                 alt={item.text}
                                 width={81}
                                 height={81}
-                                className="border-solid border-2 border-gray-300 rounded-2xl"
+                                className={
+                                    'border-solid border-2 border-gray-300 rounded-2xl'
+                                }
                             />
                         </div>
-                        <div className="card-text">{item.text}</div>
+                        <div className={'card-text'}>{item.text}</div>
                     </button>
                 ))}
             </div>
 
             <h4>한국</h4>
-            <div className=" grid grid-cols-card-grid gap-3">
+            <div className={'grid grid-cols-card-grid gap-3'}>
                 {(Object.keys(DOMESTIC_CITIES) as CITY_KEY[]).map(
                     (cityKey, idx) => (
                         <div
                             key={cityKey}
-                            className="relative border border-solid border-gray-400 rounded-xl px-5 py-1 text-center cursor-pointer"
+                            className={
+                                'relative border border-solid border-gray-400 rounded-xl px-5 py-1 text-center cursor-pointer'
+                            }
                         >
-                            <button className=" w-full">
+                            <button className={'w-full'}>
                                 {DOMESTIC_CITIES[cityKey]}
                             </button>
                         </div>
