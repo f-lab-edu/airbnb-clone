@@ -1,8 +1,8 @@
 'use client'
 
+import { useSearchStore } from '@/store/useSearchStore'
 import React from 'react'
 import { DayPicker } from 'react-day-picker'
-import { useSearchStore } from '../../store/searchStore'
 
 type Props = {}
 
