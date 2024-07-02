@@ -35,7 +35,7 @@ const DOMESTIC_CITIES = {
 
 type CITY_KEY = keyof typeof DOMESTIC_CITIES
 
-export const LocationSearchContent = () => {
+export const LocationChooser = () => {
     return (
         <div className={'popover overflow-hidden rounded-xl px-3'}>
             <h4>지역으로 검색하기</h4>
