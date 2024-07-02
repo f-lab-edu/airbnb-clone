@@ -17,10 +17,10 @@ export const Flex = ({
     ...rest
 }: FlexProps) => {
     const FlexDynamicStyle = clsx(`
-        flex,
-        items-${align},
-        ${justify},
-        flex-${direction},
+        flex 
+        justify-${justify}
+        items-${align}
+        flex-${direction}
         ${className ?? ''}
         `)
     return (

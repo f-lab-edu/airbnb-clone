@@ -26,6 +26,7 @@ export const SearchPopoverInput = ({
                         <label>
                             {label}
                             <input
+                                readOnly={true}
                                 type={'text'}
                                 placeholder={placeholder}
                                 value={value}

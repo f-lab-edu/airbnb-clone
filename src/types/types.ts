@@ -7,6 +7,8 @@ export type CountInputProps = {
     ) => void
     count: number
     guestType: GuestOptionId
+    minusDisabled: boolean
+    plusDisabled: boolean
 }
 
 export const GUEST_TYPES: {
