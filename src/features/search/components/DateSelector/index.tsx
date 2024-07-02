@@ -1,7 +1,7 @@
 import { BaseTabs } from '@/components/ui/BaseTabs/BaseTabs'
 import { RangeCalendar } from '@/features/search/components/RangeCalendar'
 
-export const DateChooserTabs = () => {
+export const DateSelector = () => {
     return (
         <BaseTabs>
             <BaseTabs.List

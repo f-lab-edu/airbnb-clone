@@ -2,12 +2,13 @@
 import SearchTabsWrapperLayout from '../../layouts/SearchTabsWrapperLayout'
 import { format } from 'date-fns'
 import { useSearchStore } from '@/store/useSearchStore'
-import { DateChooserTabs } from '@/features/search/components/DateChooserTabs'
 import { SearchButton } from '../SearchButton'
-import { LocationChooser } from '@/features/search/components/LocationSearchContent'
 import { SearchPopoverInput } from '../SearchPopoverInput'
-import { GUEST_TYPES, Guest, GuestCountChooser } from '../\bGuestCountChooser'
 import { GuestState } from '@/store/types'
+import { GUEST_TYPES, Guest } from '@/types/types'
+import { LocationSelector } from '../LocationSelector'
+import { DateSelector } from '../DateSelector'
+import { GuestSelector } from '../GuestSelector'
 
 /**
  * SearchTabs
@@ -24,7 +25,7 @@ export const SearchTabs = () => {
                 label="여행지"
                 value={destination}
                 placeholder="여행지 검색"
-                contents={<LocationChooser />}
+                contents={<LocationSelector />}
             />
 
             <SearchPopoverInput
@@ -32,7 +33,7 @@ export const SearchTabs = () => {
                 label="체크인"
                 value={from ? format(from, 'M월dd일') : ''}
                 placeholder="날짜 추가"
-                contents={<DateChooserTabs />}
+                contents={<DateSelector />}
             />
             <SearchPopoverInput
                 width="w-2/6"
@@ -45,7 +46,7 @@ export const SearchTabs = () => {
                 label="여행자"
                 placeholder="게스트 추가"
                 value={formatGuestCount(guests, '명')}
-                contents={<GuestCountChooser />}
+                contents={<GuestSelector />}
             />
 
             <SearchButton />

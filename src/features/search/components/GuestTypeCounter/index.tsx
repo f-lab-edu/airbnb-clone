@@ -1,3 +1,5 @@
+'use client'
+
 import { Flex } from '@/components/Flex'
 import { CountInputProps } from '@/types/types'
 
