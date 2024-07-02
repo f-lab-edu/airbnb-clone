@@ -1,35 +1,39 @@
 import { addDays } from 'date-fns'
-import { DateRange, SelectRangeEventHandler } from 'react-day-picker'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
+import { InitialState, SearchAction, SearchState } from './types'
 
-interface SearchState {
-    destination: string
-    from: DateRange['from']
-    to: DateRange['to']
-    guests: number
-    setDestination: (destination: string) => void
-    setDateRange: SelectRangeEventHandler
-    setGuests: (guests: number) => void
-    resetSearch: () => void
+const initialState: InitialState = {
+    destination: '',
+    from: new Date(),
+    to: addDays(new Date(), 4),
+    guests: {
+        adults: 0,
+        children: 0,
+        infants: 0,
+        pets: 0,
+    },
 }
 
-export const useSearchStore = create<SearchState>()(
+export const useSearchStore = create<SearchState & SearchAction>()(
     devtools((set) => ({
-        destination: '',
-        from: new Date(),
-        to: addDays(new Date(), 4),
-        guests: 1,
+        ...initialState,
         setDestination: (destination) => set({ destination }),
+
         setDateRange: (range, selectedDay, activeModifiers, e) =>
             set({ from: range?.from, to: range?.to }),
-        setGuests: (guests) => set({ guests }),
-        resetSearch: () =>
-            set({
-                destination: '',
-                from: new Date(),
-                to: addDays(new Date(), 4),
-                guests: 1,
+
+        setGuests: (update) =>
+            set(({ guests }) => {
+                const [key, value] = Object.entries(update)[0]
+
+                return {
+                    guests: {
+                        ...guests,
+                        [key]: guests[key as keyof typeof guests] + value,
+                    },
+                }
             }),
+        resetSearch: () => set(initialState),
     }))
 )
