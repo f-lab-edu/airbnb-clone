@@ -7,7 +7,7 @@ import {
     BaseTabsListProps,
 } from './BaseTabs.types'
 import clsx from 'clsx'
-import { useTabStore } from '@/store/ui/useTabStore'
+import { useTabStore } from '@/store/useTabStore'
 
 //개선하고 싶은 부분 : BaseTabs에 제네릭으로 받은 T - value를 하위 컴포넌트에서 제한된 T 로 좁혀지게 사용하도록?;
 
