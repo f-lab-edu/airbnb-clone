@@ -9,7 +9,7 @@
         "lint": "next lint",
         "test": "jest",
         "test:watch": "jest --watch",
-        "svgr:generate": "npx @svgr/cli --out-dir src/components/icons --ignore-existing -- public/icons"
+        "svgr:generate": "npx  @svgr/cli --config-file svgr.config.js --out-dir src/components/icons -- public/icons"
     },
     "dependencies": {
         "@radix-ui/react-slot": "^1.1.0",

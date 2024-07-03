@@ -8,7 +8,7 @@ const SvgRightArrow = (props: SVGProps<SVGSVGElement>) => (
         {...props}
     >
         <path
-            stroke="#000"
+            stroke="currentColor"
             strokeWidth={2}
             d="m1.5 1.5 4.238 4.238a.375.375 0 0 1 0 .524L1.5 10.5"
         />
