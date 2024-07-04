@@ -11,14 +11,12 @@ export type CountInputProps = {
     plusDisabled: boolean
 }
 
-export const GUEST_TYPES: {
-    [k in GuestOptionId]: { label: string; ageRange: string }
-} = {
+export const GUEST_TYPES = {
     adults: { label: '성인', ageRange: '13세 이상' },
     children: { label: '어린이', ageRange: '2~12세' },
     infants: { label: '유아', ageRange: '2세 미만' },
     pets: { label: '반려동물', ageRange: '' },
-}
+} as const
 
 export type GuestCountOperation = 'add' | 'subtract'
 

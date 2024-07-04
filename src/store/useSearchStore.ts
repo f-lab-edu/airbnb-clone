@@ -2,6 +2,7 @@ import { addDays } from 'date-fns'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { InitialState, SearchAction, SearchState } from './types'
+import { objectKeys } from '@/lib/utils'
 
 const initialState: InitialState = {
     destination: '',
@@ -20,19 +21,17 @@ export const useSearchStore = create<SearchState & SearchAction>()(
         ...initialState,
         setDestination: (destination) => set({ destination }),
 
-        setDateRange: (range, selectedDay, activeModifiers, e) =>
-            set({ from: range?.from, to: range?.to }),
+        setDateRange: (range) => set({ from: range?.from, to: range?.to }),
 
         setGuests: (update) =>
             set(({ guests }) => {
-                const [key, value] = Object.entries(update)[0]
-
-                return {
-                    guests: {
-                        ...guests,
-                        [key]: guests[key as keyof typeof guests] + value,
-                    },
+                const guestType = objectKeys(update)[0]
+                const count = update[guestType] ?? 0 // 없을 경우 0 처리
+                const updatedGuests = {
+                    ...guests,
+                    [guestType]: guests[guestType] + count,
                 }
+                return { guests: updatedGuests }
             }),
         resetSearch: () => set(initialState),
     }))
