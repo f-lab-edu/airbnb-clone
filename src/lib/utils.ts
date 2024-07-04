@@ -1,5 +1,5 @@
 import { GuestState } from '@/store/types'
-import { GUEST_TYPES, Guest } from '@/types/types'
+import { GUEST_TYPES } from '@/types/types'
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -40,4 +40,13 @@ export function createGuestSummary(guests: GuestState, unit: string): string {
     ]
 
     return parts.filter(Boolean).join(', ')
+}
+
+/**
+ * Object.keys(object).map(key) 에서 key 가 항상 string 으로 추론 되는 부분을 개선 하는 wrapper 함수
+ * key 에 대한 타입이 추론 된다.
+ * @param object
+ */
+export function objectKeys<T extends Object>(object: T): (keyof T)[] {
+    return Object.keys(object) as (keyof T)[]
 }

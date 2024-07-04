@@ -1,10 +1,10 @@
 import { DateRange, SelectRangeEventHandler } from 'react-day-picker'
-import { AirbnbPartial, AirbnbPick } from './../types/utils'
+import { AirbnbPartial, AirbnbPick } from '@/types/utils'
 
 export type GuestOptionId = 'adults' | 'children' | 'infants' | 'pets'
 
 export type GuestState = { [k in GuestOptionId]: number }
-export type OptionalGuests = AirbnbPartial<GuestState>
+
 export interface SearchState {
     destination: string
     from: DateRange['from']
@@ -20,6 +20,6 @@ export type InitialState = AirbnbPick<
 export type SearchAction = {
     setDestination: (destination: string) => void
     setDateRange: SelectRangeEventHandler
-    setGuests: (update: OptionalGuests) => void
+    setGuests: (update: AirbnbPartial<Record<GuestOptionId, number>>) => void
     resetSearch: () => void
 }
