@@ -1,14 +1,14 @@
 import Link from 'next/link'
 
+import React, { Suspense } from 'react'
 import { DropDown } from '@/components/ui/DropDown'
 import { ProfileButton } from '@/components/ProfileButton'
 import { Logo } from '@/components/Logo'
 import { SearchTabs } from '@/features/search/components/SearchTabs'
 import { CategoryBar } from '@/components/CategoryBar'
-import Image from 'next/image'
 import { FilterButton } from '@/components/FilterButton'
-import Carousel from '@/components/ui/Carousel'
 import { DropDownItem } from '@/components/ui/DropDown/DropDown'
+import { SearchResult } from '@/features/search/components/SearchResult'
 
 export default function Home() {
     return (
@@ -51,24 +51,9 @@ export default function Home() {
                     id={'main_list'}
                     className={'grid grid-cols-5 grid-rows-5 gap-4 mt-5'}
                 >
-                    <div className={'w-96'}>
-                        <Carousel>
-                            {Array.from({ length: 2 }).map((_, idx) => (
-                                <a
-                                    key={idx.toString()}
-                                    className={'w-200 h-200'}
-                                >
-                                    <Image
-                                        width={100}
-                                        height={100}
-                                        objectFit={'cover'}
-                                        src={'/mockHouse.svg'}
-                                        alt={'mockHouse'}
-                                    />
-                                </a>
-                            ))}
-                        </Carousel>
-                    </div>
+                    <Suspense>
+                        <SearchResult />
+                    </Suspense>
                 </section>
             </main>
             <footer></footer>
