@@ -19,13 +19,12 @@ export function SearchResult() {
     }
     return (
         <Suspense fallback={<div>waiting....</div>}>
-            {searchResultList?.pages?.map((page, idx) => (
+            {searchResultList?.pages?.map((page) => (
                 <div key={page.offset} className={'main-search-result-grid'}>
                     {page.items.map((item) => (
                         <SearchResultCard
                             key={item.id}
                             images={item.images}
-                            location={item.location}
                             name={item.name}
                             price={item.price}
                             rating={item.rating}
