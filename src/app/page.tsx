@@ -47,10 +47,7 @@ export default function Home() {
                     <FilterButton />
                 </section>
 
-                <section
-                    id={'main_list'}
-                    className={'grid grid-cols-5 grid-rows-5 gap-4 mt-5'}
-                >
+                <section id={'main_list'}>
                     <Suspense>
                         <SearchResult />
                     </Suspense>
