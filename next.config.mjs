@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
     webpack(config) {
         // Grab the existing rule that handles SVG imports
         const fileLoaderRule = config.module.rules.find((rule) =>
@@ -28,6 +29,9 @@ const nextConfig = {
         fileLoaderRule.exclude = /\.svg$/i
 
         return config
+    },
+    images: {
+        domains: ['dynamic-media-cdn.tripadvisor.com'],
     },
 }
 
