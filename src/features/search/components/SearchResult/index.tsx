@@ -1,23 +1,44 @@
 'use client'
-import { Suspense } from 'react'
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
-import { fetchPing } from '@/api/ping'
+
+import React, { Suspense } from 'react'
+import { SearchResultCard } from '@/features/search/components/SearchResultCard'
+import { useSearchAirbnb } from '@/hooks/useSearchAirbnb'
 
 export function SearchResult() {
-    const { data } = useSuspenseInfiniteQuery({
-        queryKey: ['ping'],
-        queryFn: fetchPing,
-        getNextPageParam: (lastPage, allPages) => {
-            return lastPage.length ? allPages.length + 1 : undefined
-        },
-        initialPageParam: 0,
-    })
+    const {
+        data: searchResultList,
+        hasNextPage,
+        isFetchingNextPage,
+        fetchNextPage,
+    } = useSearchAirbnb()
 
+    const conditionalLoadMoreText = () => {
+        if (isFetchingNextPage) return 'loading...'
+        if (hasNextPage) return 'more'
+        return 'no more'
+    }
     return (
-        <div className={'w-96'}>
-            <Suspense fallback={<div>waiting....</div>}>
-                {JSON.stringify(data, null, 2)}
-            </Suspense>
-        </div>
+        <Suspense fallback={<div>waiting....</div>}>
+            {searchResultList?.pages?.map((page, idx) => (
+                <div key={page.offset} className={'main-search-result-grid'}>
+                    {page.items.map((item) => (
+                        <SearchResultCard
+                            key={item.id}
+                            images={item.images}
+                            location={item.location}
+                            name={item.name}
+                            price={item.price}
+                            rating={item.rating}
+                        />
+                    ))}
+                </div>
+            ))}
+            <button
+                onClick={() => fetchNextPage()}
+                disabled={!hasNextPage || isFetchingNextPage}
+            >
+                {conditionalLoadMoreText()}
+            </button>
+        </Suspense>
     )
 }
