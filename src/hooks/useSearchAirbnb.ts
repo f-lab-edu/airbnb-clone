@@ -7,7 +7,6 @@ export const useSearchAirbnb = () => {
         queryFn: fetchSearch,
         getNextPageParam: (lastPage) => {
             const { offset, limit, total } = lastPage
-            // 현재 페이지
             const currentPage = offset / limit + 1
             return offset + limit < total ? currentPage + 1 : undefined
         },
