@@ -25,14 +25,17 @@ export function Providers({
     }
     let browserQueryClient: QueryClient | undefined = undefined
 
-    function getQueryClient() {
-        if (isServer) {
-            return makeQueryClient()
-        } else {
-            if (!browserQueryClient) browserQueryClient = makeQueryClient()
-            return browserQueryClient
-        }
+function getQueryClient() {
+    if (isServer) {
+        return makeQueryClient();
     }
+
+    if (!browserQueryClient) {
+        browserQueryClient = makeQueryClient();
+    }
+    
+    return browserQueryClient;
+}
 
     const queryClient = getQueryClient()
     console.log('layout')
