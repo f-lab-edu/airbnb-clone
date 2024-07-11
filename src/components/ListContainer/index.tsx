@@ -10,7 +10,9 @@ export function ListContainer<T>({
     return (
         <div className={className} {...props}>
             {list?.map((item, index) => (
-                <React.Fragment key={index}>{renderProps(item)}</React.Fragment>
+                <React.Fragment key={`${index + 1}_item`}>
+                    {renderProps(item)}
+                </React.Fragment>
             ))}
         </div>
     )
