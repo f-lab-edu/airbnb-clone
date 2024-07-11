@@ -37,13 +37,13 @@ export function SearchResult() {
             <Observer
                 onIntersect={handleOnIntersect}
                 loader={
-                    isFetching || isFetchingNextPage || hasNextPage ? (
-                        <Lottie
-                            options={defaultOptions}
-                            height={70}
-                            width={200}
-                        />
-                    ) : null
+                    <If
+                        condition={
+                            isFetching || isFetchingNextPage || hasNextPage
+                        }
+                    >
+                        <Lottie options={defaultOptions} />
+                    </If>
                 }
             >
                 {searchResultList.pages.map((page) => (
@@ -52,4 +52,14 @@ export function SearchResult() {
             </Observer>
         </Suspense>
     )
+}
+
+function If({
+    condition,
+    children,
+}: Readonly<{ condition: boolean; children: React.ReactNode }>) {
+    if (condition) {
+        return <>{children}</>
+    }
+    return <></>
 }
