@@ -23,15 +23,7 @@ export const SearchResultCard = ({
 }: SearchResultCardProps) => {
     return (
         <Card>
-            {images?.map((image, idx) => (
-                <Image
-                    key={image}
-                    src={image}
-                    width={300}
-                    height={250}
-                    alt={`airbnb-${idx}`}
-                />
-            ))}
+{renderImages(images)}
 
             <Flex justify={'between'}>
                 <Text>{name}</Text>
