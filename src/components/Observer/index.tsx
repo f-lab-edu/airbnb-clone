@@ -25,7 +25,7 @@ export function Observer({
         <div>
             {children}
             {loader}
-            <div className={'w-full h-7 '} ref={ref}></div>
+            <div className={'w-full h-7'} ref={ref}></div>
         </div>
     )
 }
