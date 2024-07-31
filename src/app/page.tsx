@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import React, { Suspense } from 'react'
+import React from 'react'
 import { DropDown } from '@/components/ui/DropDown'
 import { ProfileButton } from '@/components/ProfileButton'
 import { Logo } from '@/components/Logo'
@@ -8,7 +8,7 @@ import { SearchTabs } from '@/features/search/components/SearchTabs'
 import { CategoryBar } from '@/components/CategoryBar'
 import { FilterButton } from '@/components/FilterButton'
 import { DropDownItem } from '@/components/ui/DropDown/DropDown'
-import { SearchResult } from '@/features/search/components/SearchResult'
+import { SearchResultWrapper } from '@/components/SearchResultWrapper'
 
 export default function Home() {
     return (
@@ -48,9 +48,7 @@ export default function Home() {
                 </section>
 
                 <section id={'main_list'}>
-                    <Suspense>
-                        <SearchResult />
-                    </Suspense>
+                    <SearchResultWrapper />
                 </section>
             </main>
             <footer></footer>
