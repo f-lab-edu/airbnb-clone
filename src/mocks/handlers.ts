@@ -1,6 +1,12 @@
 import { http, HttpResponse } from 'msw'
 import { mockListings } from '../../mockdataGenerator'
 
+export const delay = (ms = 600) => {
+    return new Promise((resolve): void => {
+        setTimeout(resolve, ms)
+    })
+}
+
 export const handlers = [
     // for testing
     http.get('/api/v1/ping', () => {
@@ -26,6 +32,7 @@ export const handlers = [
         const result = {
             data: { items, total, offset, limit },
         }
+        await delay(2000)
         return HttpResponse.json(result.data)
     }),
 ]
