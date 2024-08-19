@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-
     webpack(config) {
         // Grab the existing rule that handles SVG imports
         const fileLoaderRule = config.module.rules.find((rule) =>
@@ -31,7 +30,17 @@ const nextConfig = {
         return config
     },
     images: {
-        domains: ['dynamic-media-cdn.tripadvisor.com'],
+        domains: ['https://dry7pvlp22cox.cloudfront.net'],
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'dry7pvlp22cox.cloudfront.net',
+                port: '',
+                pathname: '/mrt-images-prod/**',
+            },
+        ],
     },
 }
 
