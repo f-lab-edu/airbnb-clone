@@ -1,5 +1,6 @@
+import { AirbnbDTO } from '@/types/types'
+import axios, { AxiosResponse } from 'axios'
 import { http, HttpResponse } from 'msw'
-import { mockListings } from '../../mockdataGenerator'
 
 export const delay = (ms = 600) => {
     return new Promise((resolve): void => {
@@ -15,23 +16,57 @@ export const handlers = [
             length: 1,
         })
     }),
+    http.get('/api/v1/listings/featured', async ({ request }) => {
+        console.log('/api/v1/listings/featured')
+        const url = new URL(request.url)
+        const limit = url.searchParams.get('limit')
+        const offset = url.searchParams.get('offset')
+        const mockList: AirbnbDTO[] = require('../../public/mockData3.json')
+        const items = mockList.slice(
+            Math.max(0, Number(offset)),
+            Math.min(mockList.length, Number(offset) + Number(limit))
+        )
+        console.log('/listings/featured, offset', items, offset)
+        const result = {
+            data: {
+                items,
+                total: mockList.length,
+                offset,
+                limit,
+            },
+        }
 
-    //GET /api/v1/search/listings?offset=40&limit=20
+        await delay(2000)
+        return HttpResponse.json(result.data)
+    }),
+
     http.get('/api/v1/search', async ({ request }) => {
+        //GET /api/v1/search/listings?offset=40&limit=20
         const url = new URL(request.url)
         const searchParams: SearchParams = {}
         type SearchParams = {
-            [key: string]: number
+            [key: string]: string | number
         }
         Array.from(url.searchParams.entries()).forEach(([key, value]) => {
-            searchParams[key] = Number(value)
+            searchParams[key] = value
         })
         const { offset = 0, limit = 5 } = searchParams
-        const items = mockListings.slice(offset, offset + limit)
-        const total = mockListings.length
+        const mockList: AirbnbDTO[] = require('../../public/mockData3.json')
+
+        const items = mockList.slice(
+            Math.max(0, Number(offset)),
+            Math.min(mockList.length, Number(offset) + Number(limit))
+        )
+        console.log('calculatedItems, offset', items, offset)
         const result = {
-            data: { items, total, offset, limit },
+            data: {
+                items,
+                total: mockList.length,
+                offset,
+                limit,
+            },
         }
+
         await delay(2000)
         return HttpResponse.json(result.data)
     }),
