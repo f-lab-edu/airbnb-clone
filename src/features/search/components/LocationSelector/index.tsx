@@ -1,7 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useCallback } from 'react'
 import Image from 'next/image'
+import { useSearchStore } from '@/store/useSearchStore'
 const searchWithLocation = [
     { text: '유연한 검색', icon: 'location' },
     {
@@ -36,6 +37,13 @@ const DOMESTIC_CITIES = {
 type CITY_KEY = keyof typeof DOMESTIC_CITIES
 
 export const LocationSelector = () => {
+    const { setDestination } = useSearchStore()
+    const handleClickCity = useCallback(
+        (city: CITY_KEY) => {
+            setDestination(DOMESTIC_CITIES[city])
+        },
+        [setDestination]
+    )
     return (
         <div className={'popover overflow-hidden rounded-xl px-3'}>
             <h4>지역으로 검색하기</h4>
@@ -68,7 +76,10 @@ export const LocationSelector = () => {
                                 'relative border border-solid border-gray-400 rounded-xl px-5 py-1 text-center cursor-pointer'
                             }
                         >
-                            <button className={'w-full'}>
+                            <button
+                                className={'w-full'}
+                                onClick={() => handleClickCity(cityKey)}
+                            >
                                 {DOMESTIC_CITIES[cityKey]}
                             </button>
                         </div>
