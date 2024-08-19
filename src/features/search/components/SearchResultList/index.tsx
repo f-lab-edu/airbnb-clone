@@ -14,8 +14,8 @@ export function SearchResultList({ list }: Readonly<{ list: SearchResponse }>) {
                     key={item.id}
                     name={item.name}
                     price={item.price}
-                    rating={item.rating}
-                    images={item.images}
+                    rating={item.starRating}
+                    image={item.image}
                 />
             )}
         />
