@@ -8,6 +8,8 @@ import { LocationSelector } from '../LocationSelector'
 import { DateSelector } from '../DateSelector'
 import { GuestSelector } from '../GuestSelector'
 import { createGuestSummary } from '@/lib/utils'
+import { useCallback } from 'react'
+import { useUrlSync } from '@/hooks/useUrlSync'
 
 /**
  * SearchTabs
@@ -16,6 +18,13 @@ import { createGuestSummary } from '@/lib/utils'
 
 export const SearchTabs = () => {
     const { destination, from, to, guests } = useSearchStore()
+    const { setIsSearchTriggered } = useSearchStore()
+    const { updateUrl } = useUrlSync()
+
+    const handleSearchButtonClicked = useCallback(() => {
+        updateUrl()
+        setIsSearchTriggered(true)
+    }, [setIsSearchTriggered, updateUrl])
 
     return (
         <SearchTabsWrapperLayout>
@@ -48,7 +57,7 @@ export const SearchTabs = () => {
                 contents={<GuestSelector />}
             />
 
-            <SearchButton />
+            <SearchButton onSearchButtonClicked={handleSearchButtonClicked} />
         </SearchTabsWrapperLayout>
     )
 }
