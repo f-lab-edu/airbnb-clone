@@ -2,10 +2,10 @@
 
 import React, { useCallback } from 'react'
 import Lottie from 'react-lottie'
-import { useSearchAirbnb } from '@/hooks/useSearchAirbnb'
 import { SearchResultList } from '@/features/search/components/SearchResultList'
 import { Observer } from '@/components/Observer'
 import loadMoreLoadingAnimation from '@/lotties/lottie_loading.json'
+import { useFeaturedListings } from '@/hooks/useFeturedListings'
 
 export function SearchResult() {
     const {
@@ -14,8 +14,7 @@ export function SearchResult() {
         isFetchingNextPage,
         fetchNextPage,
         isFetching,
-    } = useSearchAirbnb()
-
+    } = useFeaturedListings()
     const defaultOptions = {
         loop: true,
         autoplay: true,
