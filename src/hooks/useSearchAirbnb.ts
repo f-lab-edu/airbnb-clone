@@ -1,14 +1,15 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { fetchSearch } from '@/api/search'
+import { SearchParams } from '@/types/types'
+import { AirbnbPartial } from '@/types/utils'
 
-export const useSearchAirbnb = (qs: any) => {
+export const useSearchAirbnb = (searchParams: AirbnbPartial<SearchParams>) => {
     return useSuspenseInfiniteQuery({
-        queryKey: ['mainPage', 'search'],
+        queryKey: ['searchPage', 'results', { ...searchParams }],
         queryFn: ({ pageParam }) =>
-            qs ? fetchSearch({ ...qs, pageParam }) : fetchSearch({ pageParam }),
+            fetchSearch({ ...searchParams, offset: pageParam }),
         getNextPageParam: (lastPage, allPages) => {
-            const { offset, limit, total, items } = lastPage
-            console.log('lastPage', lastPage)
+            const { offset, limit, total } = lastPage
             const nextPage = allPages.length + 1
             return offset + limit < total ? nextPage : undefined
         },

@@ -1,5 +1,6 @@
 import { CategoryBar } from '@/components/CategoryBar'
 import { FilterBar } from './components/FilterBar'
+import { Separator } from '@radix-ui/react-separator'
 
 export default function ResultLayout({
     children,
@@ -8,13 +9,14 @@ export default function ResultLayout({
 }) {
     return (
         <div className="result-layout">
-            {/* Result 페이지에 공통적으로 적용될 레이아웃 요소들 */}
-            <header className="result-header">
-                {/* 예: 검색 바, 필터 옵션 등 */}
+            <section className="result-category sticky top-20 bg-white z-10">
+                {/* 예: 카테고리 바 */}
+                <Separator className={'mb-8 h-px bg-gray-200'} />
                 <CategoryBar />
-            </header>
+                <Separator className={'my-8 h-px bg-gray-200'} />
+            </section>
 
-            <main className="result-main grid grid-cols-[224px_1fr] gap-[42px]">
+            <main className="result-main grid grid-cols-[224px_1fr] gap-[42px] mt-12">
                 <aside className="result-aside">
                     {/* 예: 사이드바, 광고 등 */}
                     <FilterBar />

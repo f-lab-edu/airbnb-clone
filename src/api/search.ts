@@ -1,23 +1,24 @@
-import { SearchResponse } from '@/types/types'
+import { QueryOptions, SearchParams, SearchResponse } from '@/types/types'
+import { AirbnbPartial } from '@/types/utils'
+import _ from 'lodash'
 
 export const fetchSearch = async ({
-    pageParam,
+    limit = 10,
+    offset = 0,
     destination,
     from,
     to,
-    guests,
-}: {
-    pageParam: number
-    destination?: string
-    from?: string
-    to?: string
-    guests?: { adults: number; children: number; infants: number; pets: number }
-}): Promise<SearchResponse> => {
-    const limit = 10
-    const offset = limit * (pageParam - 1) < 0 ? 0 : limit * (pageParam - 1)
-
+    starRating,
+}: AirbnbPartial<SearchParams> & QueryOptions): Promise<SearchResponse> => {
+    const cleanedParams = _.omitBy(
+        { destination, from, to, starRating },
+        _.isNil
+    )
+    const searchParams = new URLSearchParams(
+        cleanedParams as Record<string, string>
+    ).toString()
     const response = await fetch(
-        `/api/v1/search?offset=${offset}&limit=${limit}`
+        `/api/v1/search?offset=${offset}&limit=${limit}&${searchParams}`
     )
     return await response.json()
 }
