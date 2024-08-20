@@ -32,7 +32,7 @@ export const useUrlSync = () => {
             infants: guests.infants.toString(),
         })
         //TODO:  하드코딩 된 URL을 사용하지 않도록 수정
-        router.push(`results?${newSearchParams.toString()}`, { scroll: false })
+        router.push(`search?${newSearchParams.toString()}`, { scroll: false })
     }
 
     return { updateUrl }

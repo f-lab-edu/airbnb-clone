@@ -27,38 +27,6 @@ export const Guest = {
     pets: 'pets',
 } as const
 
-export type RoomType = 'AllTypes' | 'Room' | 'EntirePlace'
-export type PropertyType = 'House' | 'Apartment' | 'GuestHouse' | 'Hotel'
-// 편의시설
-export interface Amenities {
-    waterfront?: boolean // 해변
-    wifi?: boolean // 와이파이
-    washer?: boolean // 세탁기
-    airConditioning?: boolean // 에어컨
-    kitchen?: boolean // 주방
-    freeParking?: boolean // 무료 주차
-    essentials?: boolean // 필수품목
-    dryer?: boolean // 건조기
-    heating?: boolean // 난방
-    dedicatedWorkspace?: boolean // 전용 작업 공간
-    tv?: boolean // TV
-    hairDryer?: boolean // 헤어드라이어
-    iron?: boolean // 다리미
-}
-
-// 가격 범위
-interface PriceRange {
-    min?: number
-    max?: number
-}
-
-// 침실, 침대, 욕실 수
-interface RoomCount {
-    bedrooms?: number
-    beds?: number
-    bathrooms?: number
-}
-
 export interface SearchResponse {
     items: AirbnbDTO[]
     total: number
@@ -69,13 +37,24 @@ export interface AirbnbDTO {
     id: number
     name: string
     price: number
-    rating: number
-    reviews: number
-    location: string
-    images: string[]
-    propertyType: PropertyType
-    roomType: RoomType
-    amenities: Amenities
-    priceRange: PriceRange
-    roomCount: RoomCount
+    starRating: number
+    image: string
+    description: string
+    originalPrice: number
+    discountPrice: number
+    discountType: DiscountType
+    amenities: Amenity[]
+    placeURL: string
 }
+export const Amenities = {
+    BreakfastIncluded: 'breakfastIncluded',
+    FreeParking: 'freeParking',
+    PetFriendly: 'petFriendly',
+    SaunaOrSteamRoom: 'saunaOrSteamRoom',
+    InRoomKitchen: 'inRoomKitchen',
+    PickupService: 'pickupService',
+} as const
+
+export type Amenity = (typeof Amenities)[keyof typeof Amenities]
+
+export type DiscountType = '할인가' | '쿠폰할인'
