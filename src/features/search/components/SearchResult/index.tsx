@@ -4,8 +4,9 @@ import React, { useCallback } from 'react'
 import Lottie from 'react-lottie'
 import { SearchResultList } from '@/features/search/components/SearchResultList'
 import { Observer } from '@/components/Observer'
-import loadMoreLoadingAnimation from '@/lotties/lottie_loading.json'
 import { useFeaturedListings } from '@/hooks/useFeturedListings'
+import { If } from '@/components/If'
+import { defaultOptions } from '@/lib/lottieConfig'
 
 export function SearchResult() {
     const {
@@ -15,14 +16,7 @@ export function SearchResult() {
         fetchNextPage,
         isFetching,
     } = useFeaturedListings()
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: loadMoreLoadingAnimation,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-        },
-    }
+
     const handleOnIntersect = useCallback(
         (entry: IntersectionObserverEntry) => {
             if (entry.isIntersecting && !isFetchingNextPage && hasNextPage) {
@@ -47,14 +41,4 @@ export function SearchResult() {
             ))}
         </Observer>
     )
-}
-
-function If({
-    condition,
-    children,
-}: Readonly<{ condition: boolean; children: React.ReactNode }>) {
-    if (condition) {
-        return <>{children}</>
-    }
-    return <></>
 }
