@@ -3,6 +3,9 @@ import { GUEST_TYPES } from '@/types/types'
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
+export interface QueryParams {
+    [key: string]: string
+}
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
@@ -49,4 +52,15 @@ export function createGuestSummary(guests: GuestState, unit: string): string {
  */
 export function objectKeys<T extends Object>(object: T): (keyof T)[] {
     return Object.keys(object) as (keyof T)[]
+}
+/**
+ * URLSearchParams를 객체로 변환하는 함수
+ * @param searchParams
+ */
+export function parseQueryParams(searchParams: URLSearchParams) {
+    const paramsArray = Array.from(searchParams.entries())
+    return paramsArray.reduce((acc, [key, value]) => {
+        acc[key] = value
+        return acc
+    }, {} as QueryParams)
 }

@@ -58,3 +58,18 @@ export const Amenities = {
 export type Amenity = (typeof Amenities)[keyof typeof Amenities]
 
 export type DiscountType = '할인가' | '쿠폰할인'
+export type SearchParams = {
+    destination: string
+    from: string
+    to: string
+    adults: number
+    children: number
+    infants: number
+    pets: number
+    starRating: string
+}
+
+export type QueryOptions = {
+    limit?: number
+    offset?: number
+}
