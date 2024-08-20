@@ -1,14 +1,8 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { fetchFeaturedListings } from '@/api/featuredListings'
+import { QueryOptions } from '@/types/types'
 
-interface UseFeaturedListingsOptions {
-    limit?: number
-    offset?: number
-}
-
-export const useFeaturedListings = ({
-    limit = 10,
-}: UseFeaturedListingsOptions = {}) => {
+export const useFeaturedListings = ({ limit = 10 }: QueryOptions = {}) => {
     return useSuspenseInfiniteQuery({
         queryKey: ['mainPage', 'search'],
         queryFn: ({ pageParam = 0 }) =>
