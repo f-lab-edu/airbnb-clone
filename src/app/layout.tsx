@@ -24,42 +24,46 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body className={`w-11/12 mx-auto  ${inter.className}`}>
                 <MswProvider>
                     <Providers>
-                        <nav
-                            className={
-                                'flex justify-between item-center w-full h-20'
-                            }
-                        >
-                            <div className={'flex w-1/3 items-center'}>
-                                <Logo />
-                            </div>
-                            <div
+                        <header className={'sticky top-0 z-10 bg-white'}>
+                            <nav
                                 className={
-                                    'flex justify-between items-center w-1/3'
+                                    'flex justify-between item-center w-full h-20'
                                 }
                             >
-                                <Link href="#">
-                                    <p>숙소 </p>
-                                </Link>
-                                <Link href="#">
-                                    <p>체험</p>
-                                </Link>
-                                <Link href="#">
-                                    <p>온라인 체험</p>
-                                </Link>
-                            </div>
-                            <div
-                                className={
-                                    'flex w-1/3 items-center justify-end'
-                                }
-                            >
-                                <DropDown triggerElement={<ProfileButton />}>
-                                    <DropDownItem>프로필 </DropDownItem>
-                                </DropDown>
-                            </div>
-                        </nav>
+                                <div className={'flex w-1/3 items-center'}>
+                                    <Logo />
+                                </div>
+                                <div
+                                    className={
+                                        'flex justify-between items-center w-1/3'
+                                    }
+                                >
+                                    <Link href="#">
+                                        <p>숙소 </p>
+                                    </Link>
+                                    <Link href="#">
+                                        <p>체험</p>
+                                    </Link>
+                                    <Link href="#">
+                                        <p>온라인 체험</p>
+                                    </Link>
+                                </div>
+                                <div
+                                    className={
+                                        'flex w-1/3 items-center justify-end'
+                                    }
+                                >
+                                    <DropDown
+                                        triggerElement={<ProfileButton />}
+                                    >
+                                        <DropDownItem>프로필 </DropDownItem>
+                                    </DropDown>
+                                </div>
+                            </nav>
+                        </header>
                         {children}
                     </Providers>
                 </MswProvider>
