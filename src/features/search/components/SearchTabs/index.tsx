@@ -18,13 +18,11 @@ import { useUrlSync } from '@/hooks/useUrlSync'
 
 export const SearchTabs = () => {
     const { destination, from, to, guests } = useSearchStore()
-    const { setIsSearchTriggered } = useSearchStore()
     const { updateUrl } = useUrlSync()
 
     const handleSearchButtonClicked = useCallback(() => {
         updateUrl()
-        setIsSearchTriggered(true)
-    }, [setIsSearchTriggered, updateUrl])
+    }, [updateUrl])
 
     return (
         <SearchTabsWrapperLayout>

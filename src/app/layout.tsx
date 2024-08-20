@@ -4,6 +4,11 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/app/providers'
 import { MswProvider } from '@/app/MswProvider'
+import { Logo } from '@/components/Logo'
+import Link from 'next/link'
+import { DropDown } from '@/components/ui/DropDown'
+import { ProfileButton } from '@/components/ProfileButton'
+import { DropDownItem } from '@/components/ui/DropDown/DropDown'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +26,42 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <MswProvider>
-                    <Providers>{children}</Providers>
+                    <Providers>
+                        <nav
+                            className={
+                                'flex justify-between item-center w-full h-20'
+                            }
+                        >
+                            <div className={'flex w-1/3 items-center'}>
+                                <Logo />
+                            </div>
+                            <div
+                                className={
+                                    'flex justify-between items-center w-1/3'
+                                }
+                            >
+                                <Link href="#">
+                                    <p>숙소 </p>
+                                </Link>
+                                <Link href="#">
+                                    <p>체험</p>
+                                </Link>
+                                <Link href="#">
+                                    <p>온라인 체험</p>
+                                </Link>
+                            </div>
+                            <div
+                                className={
+                                    'flex w-1/3 items-center justify-end'
+                                }
+                            >
+                                <DropDown triggerElement={<ProfileButton />}>
+                                    <DropDownItem>프로필 </DropDownItem>
+                                </DropDown>
+                            </div>
+                        </nav>
+                        {children}
+                    </Providers>
                 </MswProvider>
             </body>
         </html>

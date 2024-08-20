@@ -13,6 +13,9 @@
     "mock:generate": "node ./mockdataGenerator.js"
   },
   "dependencies": {
+    "@radix-ui/react-checkbox": "^1.1.1",
+    "@radix-ui/react-separator": "^1.1.0",
+    "@radix-ui/react-slider": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@suspensive/react": "^2.6.2",
     "@uidotdev/usehooks": "^2.4.1",
