@@ -41,7 +41,6 @@ export const handlers = [
     }),
 
     http.get('/api/v1/search', async ({ request }) => {
-        //GET /api/v1/search/listings?offset=40&limit=20
         const url = new URL(request.url)
         const searchParams: SearchParams = {}
         type SearchParams = {
@@ -57,7 +56,6 @@ export const handlers = [
             Math.max(0, Number(offset)),
             Math.min(mockList.length, Number(offset) + Number(limit))
         )
-        console.log('calculatedItems, offset', items, offset)
         const result = {
             data: {
                 items,

@@ -4,7 +4,7 @@ import { SearchResultList } from '@/features/search/components/SearchResultList'
 import { useSearchAirbnb } from '@/hooks/useSearchAirbnb'
 import { defaultOptions } from '@/lib/lottieConfig'
 import { parseQueryParams } from '@/lib/utils'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import Lottie from 'react-lottie'
 
