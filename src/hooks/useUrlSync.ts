@@ -16,9 +16,7 @@ export const useUrlSync = () => {
         const infants = parseInt(searchParams.get('infants') || '0', 10)
 
         setDestination(destination)
-        setGuests({ adults })
-        setGuests({ children })
-        setGuests({ infants })
+        setGuests({ adults, children, infants })
     }, [searchParams, setDestination, setGuests])
 
     // 상태를 URL 파라미터에 반영
