@@ -30,9 +30,6 @@ const nextConfig = {
         return config
     },
     images: {
-        domains: ['https://dry7pvlp22cox.cloudfront.net'],
-    },
-    images: {
         remotePatterns: [
             {
                 protocol: 'https',
