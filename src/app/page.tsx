@@ -1,13 +1,5 @@
-import Link from 'next/link'
-
-import React from 'react'
-import { DropDown } from '@/components/ui/DropDown'
-import { ProfileButton } from '@/components/ProfileButton'
-import { Logo } from '@/components/Logo'
 import { SearchTabs } from '@/features/search/components/SearchTabs'
 import { CategoryBar } from '@/components/CategoryBar'
-import { FilterButton } from '@/components/FilterButton'
-import { DropDownItem } from '@/components/ui/DropDown/DropDown'
 import { SearchResultWrapper } from '@/components/SearchResultWrapper'
 
 export default function Home() {
@@ -29,7 +21,6 @@ export default function Home() {
                     <SearchResultWrapper />
                 </section>
             </main>
-            <footer></footer>
         </>
     )
 }

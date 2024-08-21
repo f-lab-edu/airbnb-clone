@@ -10,10 +10,10 @@ export const useUrlSync = () => {
 
     // URL 파라미터를 읽어서 상태에 반영
     useEffect(() => {
-        const destination = searchParams.get('destination') || ''
-        const adults = parseInt(searchParams.get('adults') || '0', 10)
-        const children = parseInt(searchParams.get('children') || '0', 10)
-        const infants = parseInt(searchParams.get('infants') || '0', 10)
+        const destination = searchParams.get('destination') ?? ''
+        const adults = parseInt(searchParams.get('adults') ?? '0', 10)
+        const children = parseInt(searchParams.get('children') ?? '0', 10)
+        const infants = parseInt(searchParams.get('infants') ?? '0', 10)
 
         setDestination(destination)
         setGuests({ adults, children, infants })
