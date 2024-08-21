@@ -73,3 +73,7 @@ export type QueryOptions = {
     limit?: number
     offset?: number
 }
+
+export const DEFAULT_DELAY = 600
+export const DEFAULT_LIMIT = 10
+export const DEFAULT_OFFSET = 0

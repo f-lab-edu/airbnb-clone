@@ -1,5 +1,4 @@
-import { AirbnbDTO } from '@/types/types'
-import axios, { AxiosResponse } from 'axios'
+import { AirbnbDTO, DEFAULT_LIMIT, DEFAULT_OFFSET } from '@/types/types'
 import { http, HttpResponse } from 'msw'
 
 export const delay = (ms = 600) => {
@@ -17,7 +16,6 @@ export const handlers = [
         })
     }),
     http.get('/api/v1/listings/featured', async ({ request }) => {
-        console.log('/api/v1/listings/featured')
         const url = new URL(request.url)
         const limit = url.searchParams.get('limit')
         const offset = url.searchParams.get('offset')
@@ -26,7 +24,6 @@ export const handlers = [
             Math.max(0, Number(offset)),
             Math.min(mockList.length, Number(offset) + Number(limit))
         )
-        console.log('/listings/featured, offset', items, offset)
         const result = {
             data: {
                 items,
@@ -49,7 +46,7 @@ export const handlers = [
         Array.from(url.searchParams.entries()).forEach(([key, value]) => {
             searchParams[key] = value
         })
-        const { offset = 0, limit = 5 } = searchParams
+        const { offset = DEFAULT_OFFSET, limit = DEFAULT_LIMIT } = searchParams
         const mockList: AirbnbDTO[] = require('../../public/mockData3.json')
 
         const items = mockList.slice(
