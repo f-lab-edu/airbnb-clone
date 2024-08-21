@@ -13,7 +13,8 @@ export const PriceSelection = () => {
     const buildQueryString = useCreateQueryString()
     const handleClickChange = useCallback(
         (value: number[]) => {
-            const currentStep = value.at(0) ?? 0 //TODO: should apply magic number
+            const currentStep =
+                value.at(0) ?? priceFilterData.range.defaultValue
             const currentPrice =
                 (currentStep / priceFilterData.sliderConfig.max) *
                 priceFilterData.range.max
@@ -51,7 +52,7 @@ export const PriceSelection = () => {
                 step={priceFilterData.sliderConfig.step}
                 className="my-4"
             />
-            <Flex className={'justify-between '}>
+            <Flex className={'justify-between'}>
                 <Text>
                     <h4>{priceFilterData.labels.min}</h4>
                 </Text>
